@@ -53,7 +53,7 @@ flags:
 					fmt.Print("V")
 				case 'a' <= ch && ch <= 'z':
 					fmt.Printf("%c", ch-32)
-				case ' ' <= ch && ch <= '/' || ':' <= ch && ch <= '?' || ch == '\u00A1':
+				case ' ' <= ch && ch <= '/' || ':' <= ch && ch <= '?' || ch == '\u00A1' || ch == '\n':
 					fmt.Print("")
 				default:
 					fmt.Printf("%c", ch)
@@ -95,7 +95,6 @@ flags:
 		trigram := make([]rune, 3, 3)
 		pmatch := make([]rune, 3, 3)
 		tcount := make(map[string]int)
-		//ti := 0
 		stdin := make([]rune, 0)
 		for {
 			if _, err := fmt.Fscanf(os.Stdin, "%c", &ch); err != nil {
@@ -116,9 +115,10 @@ flags:
 				if args[0] == "-TC" {
 					fmt.Printf("%s ", string(strTri))
 				} else {
-					fmt.Printf("trigram: %s pos: %d ", string(strTri), i)
+					fmt.Printf("trigram: %s pos: ", string(strTri))
 				}
 				tcount[strTri] = 0
+				previdx := -1
 				for j := 0; j <= len(stdin)-3; j++ {
 					if i+1 <= j && j <= i+2 {
 						continue
@@ -128,10 +128,16 @@ flags:
 					if string(pmatch) == strTri {
 						tcount[strTri] += 1
 						if args[0] == "-T" {
-							fmt.Printf("%d ", j)
+							if previdx == -1 {
+								fmt.Printf("%d ", j)
+							} else {
+								fmt.Printf("(d=%d) %d ", j-previdx, j)
+							}
 						}
+						previdx = j
 					}
 				}
+				previdx = -1
 				if args[0] == "-TC" {
 					fmt.Printf("%d\n", tcount[strTri])
 				} else {

@@ -16,29 +16,29 @@ func main() {
 			}
 		} else {
 			switch {
-			case ch == 'j':
+			case ch == 'j' || ch == 'J':
 				fallthrough
-			case ch == 'h':
+			case ch == 'h' || ch == 'H':
 				fmt.Print("I")
-			case ch == 'ñ':
+			case ch == 'ñ' || ch == 'Ñ':
 				fmt.Print("N")
-			case ch == 'k':
+			case ch == 'k' || ch == 'K':
 				fmt.Print("L")
-			case ch == 'u':
+			case ch == 'u' || ch == 'U':
 				fallthrough
-			case ch == 'w':
+			case ch == 'w' || ch == 'W':
 				fmt.Print("V")
-			case ch == 'y':
+			case ch == 'y' || ch == 'Y':
 				fmt.Print("Z")
-			case ch == 'á':
+			case ch == 'á' || ch == 'Á':
 				fmt.Print("A")
-			case ch == 'é':
+			case ch == 'é' || ch == 'É':
 				fmt.Print("E")
-			case ch == 'í':
+			case ch == 'í' || ch == 'Í':
 				fmt.Print("I")
-			case ch == 'ó':
+			case ch == 'ó' || ch == 'Ó':
 				fmt.Print("O")
-			case ch == 'ú':
+			case ch == 'ú' || ch == 'Ú':
 				fmt.Print("V")
 			case 'a' <= ch && ch <= 'z':
 				fmt.Printf("%c", ch-32)
