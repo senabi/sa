@@ -1,13 +1,4 @@
-package main
-
-import (
-	"fmt"
-	"io"
-	"os"
-)
-
-func main() {
-	var ch rune
+```go
 	for {
 		if _, err := fmt.Fscanf(os.Stdin, "%c", &ch); err != nil {
 			if err == io.EOF {
@@ -41,9 +32,11 @@ func main() {
 				fmt.Print("V")
 			case 'a' <= ch && ch <= 'z':
 				fmt.Printf("%c", ch-32)
+			case ' ' <= ch && ch <= '/' || ':' <= ch && ch <= '?' || ch == '\u00A1' || ch == '\n':
+				fmt.Print("")
 			default:
 				fmt.Printf("%c", ch)
 			}
 		}
 	}
-}
+```
