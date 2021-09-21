@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p ./outputs
+./build/elf $1 && imv -r ./outputs
